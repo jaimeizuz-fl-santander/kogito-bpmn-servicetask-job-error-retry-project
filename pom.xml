@@ -345,7 +345,7 @@
       <id>development</id>
       <properties>
         <quarkus.profile>dev</quarkus.profile>
-        <quarkus.wiremock.version>1.5.0</quarkus.wiremock.version>
+        <quarkus.wiremock.version>1.5.1</quarkus.wiremock.version>
       </properties>
       <!--
       <dependencyManagement>
