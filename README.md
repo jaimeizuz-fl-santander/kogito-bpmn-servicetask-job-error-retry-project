@@ -2,6 +2,8 @@
 ## Description
 The ```"hiring"``` BPMN workflow contains a Service Task, ```"Store Candidate Data"```, which is marked with isAsync=true. The Service Task executes the Java method ```org.kie.kogito.hr.servicetasks.DummyServiceTask.callDummy```that calls an HTTP service, and throws an exception in case of HTTP response code <> 2xx. When the exception is thrown, the job execution is retried 62 times and then it stops, saying that the retry limit was exceeded, and the process instance gets stuck in that node (in ACTIVE state and not in ERROR state).
 
+The HTTP call is performed against a mocked service using Wiremock dev services. To modify the HTTP response code, edit the line #15 in the file ```src\main\resources\wiremock\dummy\mappings\dummy-api-stubs.json``` and replace ```500``` by ```200```.
+
 ## Steps to reproduce:
 1. Start the Kogito App in dev mode: ```mvn "-Pbamoe-community" "-Pbamoe-persistence-postgresql" "-Pembedded-postgresql" "-Pbamoe-audit" "-Pdevelopment" clean quarkus:dev```. The runtime will use the last timestamped version of Kogito Community. In order to use BAMOE 9.2.1 build, replace ```"-Pbamoe-community"``` with ```"-Pbamoe-enterprise"```.
 
